@@ -26,7 +26,6 @@ class Stack:
             self.top += 1
             self.arr[self.top] = x
 
-
     def pop(self):
         if self.isEmpty():
             print("STACK EMPTY")
@@ -37,6 +36,9 @@ class Stack:
 
     def size(self):
         return self.top + 1
+
+    def peek(self):
+        return self.arr[self.top]
 
     def printStack(self):
         for i in range(self.top+1):
