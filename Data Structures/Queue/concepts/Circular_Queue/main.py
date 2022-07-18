@@ -1,22 +1,22 @@
-import Queue
+from Circular_Queue import CircularQueue
 
 
 def main():
-    cq = Queue.CircularQueue(6)
-    cq.enqueue(1)
-    cq.enqueue(2)
-    cq.enqueue(3)
+    queue = CircularQueue(10)
+    for i in range(10):
+        queue.push_element(i)
 
-    cq.printCQueue()
+    queue.print_queue()
 
-    cq.dequeue()
-    cq.dequeue()
+    for _ in range(5):
+        queue.pop_element()
 
-    cq.printCQueue()
+    queue.print_queue()
 
-    cq.peek()
+    queue.push_element(10)
+    queue.push_element(11)
 
-    cq.printCQueue()
+    queue.print_queue()
 
 
 if __name__ == "__main__":
