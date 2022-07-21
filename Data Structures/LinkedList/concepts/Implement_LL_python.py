@@ -1,49 +1,118 @@
 class Node:
     def __init__(self, data):
-        print(f"Node initialized with {data}")
         self.data = data
         self.next = None
 
-    def __str__(self):
-        return str(id(self))
-
 
 class LinkedList:
+
     def __init__(self):
         self.head = None
 
-    def insertNode(self, value):
-        if not self.head:
-            self.head = Node(value)
-            print(f"head was created..")
+    #  Inserting at the beginning
+    def peek_head(self):
+        return self.head
+
+    def insertAtBeginning(self, new_data):
+        new_node = Node(new_data)
+
+        new_node.next = self.head
+        self.head = new_node
+
+    #  Insert after a Node
+    def insertAfter(self, prev_node, new_data):
+        if prev_node is None:
+            print("The given previous node must LinkedList")
+            return
+
+        new_node = Node(new_data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+
+    # Insert at the end
+    def insertAtEnd(self, new_data):
+        new_node = Node(new_data)
+
+        if self.head is None:
+            self.head = new_node
+            return
+
+        last = self.head
+        while last.next:
+            last = last.next
+
+        last.next = new_node
+
+    # Deleting a node
+    def deleteNode(self, position):
+        if self.head is None:
+            return
+
+        temp = self.head
+
+        if position == 0:
+            self.head = temp.next
+            temp = None
+            return
+
+        # find key to  be deleted
+        for i in range(position - 1):
+            temp = temp.next
+            if temp is None:
+                break
+
+        # if the key is not present
+        if temp is None:
+            return
+
+        if temp.next is None:
+            return
+
+        next = temp.next.next
+
+        temp.next = None
+
+        temp.next = next
+
+    # search an element
+    def search(self, key):
+        current = self.head
+
+        while current is not None:
+            if current.data == key:
+                return True
+
+            current = current.next
+
+        return False
+
+    def sortLinkedList(self, head):
+        current = head
+        index = Node(None)
+
+        if head is None:
+            return
         else:
-            temp_node = self.head
-            while temp_node.next:
-                temp_node = temp_node.next
-            temp_node.next = Node(value)
-            print(f"Node appended")
+            while current is not None:
+                #  index points to the node next to current
+                index = current.next
 
-    def print_ll(self):
-        temp_node = self.head
+                while index is not None:
+                    if current.data > index.data:
+                        current.data, index.data = index.data, current.data
 
-        if temp_node is not None:
-            if temp_node.next is None:
-                print(f"{temp_node.data}", end="\n")
-            while temp_node.next:
-                print(f"[Node address: {temp_node}, data: {temp_node.data},next_add: {temp_node.next}]-->", end=" ")
-                temp_node = temp_node.next
-            print("None")
-        else:
-            print(f"Linked list is empty")
+                    index = index.next
+                current = current.next
 
-
-def main(n):
-    ll = LinkedList()
-    for _ in range(n):
-        ll.insertNode(int(input("Enter Node data value> ")))
-    ll.print_ll()
+    def printList(self):
+        temp = self.head
+        while temp:
+            print(f"{temp.data}-->", end="")
+            temp = temp.next
+        print("None")
 
 
-if __name__ == "__main__":
-    t = int(input("Enter number of Nodes> "))
-    main(t)
+
+
+
+
