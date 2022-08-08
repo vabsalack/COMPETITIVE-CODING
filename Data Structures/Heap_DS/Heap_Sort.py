@@ -1,3 +1,7 @@
+import sys
+sys.setrecursionlimit(10000)
+
+
 def heap_sort(arr, r):
     size = r + 1
     if size > 1:
@@ -24,6 +28,6 @@ def heapify(arr, n, i):
 
 
 if __name__ == "__main__":
-    array = [6, 4, 3, 8, 9, 1, 3, 7, 8]
+    array = list(map(int, input().split()))
     heap_sort(array, len(array)-1)
     print(array)
