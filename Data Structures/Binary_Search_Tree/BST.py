@@ -4,10 +4,27 @@ class Node:
         self.left = None
         self.right = None
 
+    def __str__(self):
+        return f"{self.key}"
 
-def search_node(root, key):
+
+def private_search_node(root, key):
     if root is None:
         return None
+    if key == root.key:
+        return root
+    if key < root.key:
+        return private_search_node(root.left, key)
+    if key > root.key:
+        return private_search_node(root.right, key)
+
+
+def search_node(root, key):
+    result = private_search_node(root, key)
+    if result is not None:
+        print(f"Node {root} found")
+        return
+    print(f"Node {root} not found")
 
 
 def inorder_trav(root):
