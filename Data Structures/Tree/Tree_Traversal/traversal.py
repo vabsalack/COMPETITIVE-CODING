@@ -16,6 +16,21 @@ def Inorder(root):
         Inorder(root.right)
 
 
+def inorder_2(root):
+    current = root
+    stack = []
+
+    while True:
+        if current is not None:
+            stack.append(current.left)
+        elif stack:
+            current = stack.pop()
+            print(current.val, end="->")
+            current = current.right
+        else:
+            break
+
+
 def Postorder(root):
     """ traverse left-right-root"""
     if root:
@@ -25,6 +40,26 @@ def Postorder(root):
         Postorder(root.right)
         # traverse root
         print(str(root.val) + "->", end="")
+
+
+def postorder_2(root):
+    current = root
+    stack = []
+    while True:
+        if current is not None:
+            stack.append(current.left)
+            current = current.left
+        elif stack:
+            current = stack.pop()
+            if current.right is not None:
+                stack.append(current)
+                current = current.right
+                continue
+            print(current.val, end="->")
+        else:
+            break
+
+
 
 
 def Preorder(root):
@@ -38,8 +73,24 @@ def Preorder(root):
         Preorder(root.right)
 
 
-if __name__ == "__main__":
+def Preorder_2(root):
+    """ Tree traversal without recursion"""
+    stack = [root]
 
+    while len(stack) > 0:
+
+        current = stack.pop()
+
+        while current is not None:
+
+            if current.right is not None:
+                stack.append(current.right)
+
+            print(current.val, end="->")
+            current = current.left
+
+
+if __name__ == "__main__":
     one = Node(1)
     two = Node(2)
     three = Node(3)
@@ -72,8 +123,13 @@ if __name__ == "__main__":
 
     print("Pre Oder Traversal ")
     Preorder(one)
+    print()
+    Preorder_2(one)
+
     print(" \n \nIn Oder Traversal")
     Inorder(one)
+    print()
+    inorder_2(one)
+
     print("\n \n Post Oder Traversal")
     Postorder(one)
-

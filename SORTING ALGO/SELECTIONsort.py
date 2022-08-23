@@ -1,30 +1,22 @@
-'''https://practice.geeksforgeeks.org/problems/selection-sort/1/#'''
 
-def select(arr, i):
-    # code here
-    min_idx = i
-    for j in range(i, len(arr)):
-        if arr[j] < arr[min_idx]:
-            min_idx = j
-    return min_idx
+def selection_sort(arr):
+    """Time Complexity:
+                        Best	O(n2)
+                        Worst	O(n2)
+                        Space complexity is O(1) """
+    size = len(arr)
 
+    for step in range(size):
+        min_idx = step
 
-def selectionSort(arr, n):
-    length = len(arr)
-    for i in range(length):
-        j = select(arr, i)
-        # tmp = arr[i]
-        # arr[i] = arr[j]
-        # arr[j] = tmp
-        if i == j:
-            continue
-        arr[i] = arr[i] + arr[j]
-        arr[j] = arr[i] - arr[j]
-        arr[i] = arr[i] - arr[j]
-    return arr
+        for i in range(step + 1, size):
+            if arr[i] < arr[min_idx]:
+                min_idx = i
+
+        arr[step], arr[min_idx] = arr[min_idx], arr[step]
 
 
 if __name__ == "__main__":
-    arr = list(map(int, input("enter array elements: ").split()))
-    sorted_arr = selectionSort(arr, len(arr))
-    print(sorted_arr)
+    array = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    selection_sort(array)
+    print(array)
