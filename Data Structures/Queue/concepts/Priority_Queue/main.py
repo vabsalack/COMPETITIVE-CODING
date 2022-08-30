@@ -4,10 +4,12 @@ from Priority_Queue import PriorityQueue
 def main():
     pq = PriorityQueue()
     pq.insertNode(0)
-    pq.insertNode(5)
-    pq.insertNode(6)
-    pq.insertNode(8)
-    pq.peek()
+    pq.print_queue()
+    pq.insertNode(1)
+    pq.print_queue()
+    pq.insertNode(2)
+    pq.print_queue()
+    pq.insertNode(3)
     pq.print_queue()
 
 

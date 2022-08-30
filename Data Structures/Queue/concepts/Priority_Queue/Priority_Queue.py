@@ -25,6 +25,7 @@ class PriorityQueue:
             self.arr.append(element)
         else:
             self.arr.append(element)
+            size = len(self.arr)
             for i in range((size//2 - 1), -1, -1):
                 self.heapify(size, i)
 
