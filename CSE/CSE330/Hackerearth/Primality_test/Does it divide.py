@@ -1,5 +1,7 @@
 from math import *
 
+"""https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/does-it-divide-3c60b8fb/"""
+
 
 def primality(n):
     if n <= 1:
@@ -14,20 +16,15 @@ def primality(n):
     return True
 
 
-def main(x):
-    if x == 1:
-        print("YES")
-        return
-
-    flag = primality(x + 1)
-    if flag:
-        print("NO")
-    else:
-        print("YES")
+def main(N):
+    if N == 1:
+        return "YES"
+    return "NO" if primality(N + 1) else "YES"
 
 
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
         N = int(input())
-        main(N)
+        re = main(N)
+        print(re)

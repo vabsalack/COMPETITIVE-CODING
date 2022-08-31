@@ -1,5 +1,7 @@
 from math import *
 
+"""https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/primestring/"""
+
 
 def primality(x):
     if x <= 1:
@@ -15,30 +17,31 @@ def primality(x):
 
 
 def occurence(s):
-    d = dict()
+    d = dict();
     count = 0
-    for ele in s:
-        if ele not in d:
-            d[ele] = 0
-            count += 1
-        d[ele] += 1
-    return d, count
+    for strr in s:
+        if strr not in d:
+            d[strr] = 0
+        d[strr] += 1
+    return d
 
 
 def main(s):
-    d, count = occurence(s)
-    if primality(count):
+    re = ["NO", "YES"]
+    d = occurence(s)
+    if primality(len(d)):
         for i in d:
             if not primality(d[i]):
-                print("NO")
-                return
-        print("YES")
+                return re[0]
+        else:
+            return re[1]
     else:
-        print("NO")
+        return re[0]
 
 
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
         s = input().strip()
-        main(s)
+        result = main(s)
+        print(result)

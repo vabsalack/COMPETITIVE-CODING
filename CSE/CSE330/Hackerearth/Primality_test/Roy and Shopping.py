@@ -1,35 +1,36 @@
 from math import *
 
+"""https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/roy-and-shopping-20/"""
 
-def primality(x):
-    if x <= 1:
-        return True
-    if x == 2 or x == 3:
-        return True, 0
 
-    if x % 2 == 0:
-        return False, 2
-    if x % 3 == 0:
-        return False, 3
+def leastprimefactor(n):
+    least = [0] * (n + 1)
+    least[1] = 1
+    for i in range(2, n + 1):
+        if least[i] == 0:
+            least[i] = i
 
-    for i in range(5, floor(sqrt(x)) + 1, 6):
-        if x % i == 0:
-            return False, i
-        if x % (i + 2) == 0:
-            return False, i + 2
-    return True, 0
+            for j in range(i * i, n + 1, i):
+                if least[j] == 0:
+                    least[j] = i
+    return least
+
+
+least_prime = leastprimefactor(1000000)
 
 
 def main(n):
-    flag, z = primality(n)
-    if flag:
-        print(0)
+    x = least_prime[n]
+    # print(x)
+    if x == n:
+        return 0
     else:
-        print(n - z)
+        return n - x
 
 
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
         mrp = int(input())
-        main(mrp)
+        re = main(mrp)
+        print(re)

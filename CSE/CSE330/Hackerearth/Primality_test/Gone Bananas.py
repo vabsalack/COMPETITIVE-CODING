@@ -1,5 +1,7 @@
 from math import *
 
+"""https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/monks-problem-ffeebf8a/"""
+
 
 def primality(n):
     if n <= 1:
@@ -16,11 +18,7 @@ def primality(n):
 
 def solve(N):
     # Your code goes here
-    flag = primality(N)
-    if flag:
-        return "No"
-    else:
-        return "Yes"
+    return "No" if primality(N) else "Yes"
 
 
 T = int(input())

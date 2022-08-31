@@ -1,4 +1,5 @@
 from math import *
+"""https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/little-shino-and-prime-difference-38c91b0d/"""
 
 
 def primality(n):
@@ -15,25 +16,25 @@ def primality(n):
 
 
 def main(arr, s):
-    minn = maxx = int()
-    flag = True
+    maxx = -1
+    minn = 10000000
+    flag = False
     for ele in arr:
         if primality(ele):
-            if flag:
-                minn = maxx = ele
-                flag = False
-                continue
-            if ele > maxx:
+            flag = True
+            if maxx < ele:
                 maxx = ele
-            if ele < minn:
+            if minn > ele:
                 minn = ele
-    if flag:
-        print(-1)
-        return
-    print(maxx - minn)
+
+    return maxx - minn if flag else -1
 
 
 if __name__ == "__main__":
+    '''
     size = int(input())
     arr = list(map(int, input().split()))
-    main(arr, size)
+    re = main(arr, size)
+    print(re) '''
+    print(primality(3019))
+
