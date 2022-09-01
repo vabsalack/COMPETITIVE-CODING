@@ -17,8 +17,8 @@ def primality(x):
 
 
 def occurence(s):
-    d = dict();
-    count = 0
+    d = dict()
+
     for strr in s:
         if strr not in d:
             d[strr] = 0
