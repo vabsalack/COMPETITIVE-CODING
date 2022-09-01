@@ -1,24 +1,26 @@
-from math import *
 
 """https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/monks-problem-ffeebf8a/"""
 
 
-def primality(n):
-    if n <= 1:
-        return True
-    if n == 2 or n == 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    for i in range(5, floor(sqrt(n)) + 1, 6):
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-    return True
+def sieveoferatosthenes(x):
+    sieve = [1] * (x + 1)
+    sieve[0] = 0
+    sieve[1] = 1
+    i = 2
+    while i * i <= x:
+        if sieve[i] == 1:
+            for j in range(i * i, x + 1, i):
+                sieve[j] = 0
+        i += 1
+    return sieve
+
+
+sieve = sieveoferatosthenes(1000000)
 
 
 def solve(N):
     # Your code goes here
-    return "No" if primality(N) else "Yes"
+    return "No" if sieve[N] else "Yes"
 
 
 T = int(input())
