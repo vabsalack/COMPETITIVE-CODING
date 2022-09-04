@@ -1,19 +1,22 @@
-def insertion_sort(arr):
 
+def insertion_sor(arr):
+    """
+    best case time complexity: O(n)
+    worst case time complexity: O(n^2)
+
+    """
     size = len(arr)
-    for step in range(1, size):
-        key = arr[step]
-        j = step - 1
-
-        while j >= 0 and key < arr[j]:
-            arr[j + 1] = arr[j]
-            j -= 1
-
-        arr[j + 1] = key
+    for r in range(size):
+        current = arr[r]
+        l = r - 1
+        while l >= 0 and current < arr[l]:
+            arr[l + 1] = arr[l]
+            l -= 1
+        arr[l + 1] = current
 
 
 if __name__ == "__main__":
     array = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-    insertion_sort(array)
+    insertion_sor(array)
     print(array)
 
