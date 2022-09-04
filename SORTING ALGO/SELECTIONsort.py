@@ -1,19 +1,19 @@
 
 def selection_sort(arr):
     """Time Complexity:
-                        Best	O(n2)
-                        Worst	O(n2)
-                        Space complexity is O(1) """
+                            Best	O(n2)
+                            Worst	O(n2)
+                            Space complexity is O(1) """
     size = len(arr)
 
-    for step in range(size):
-        min_idx = step
+    for l in range(size):
+        min_idx = l
+        for r in range(l+1, size):
+            if arr[r] < arr[min_idx]:
+                min_idx = r
 
-        for i in range(step + 1, size):
-            if arr[i] < arr[min_idx]:
-                min_idx = i
-
-        arr[step], arr[min_idx] = arr[min_idx], arr[step]
+        if l != min_idx:
+            arr[l], arr[min_idx] = arr[min_idx], arr[l]
 
 
 if __name__ == "__main__":
