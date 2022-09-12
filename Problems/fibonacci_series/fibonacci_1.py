@@ -1,29 +1,16 @@
-mem = []
+memo = [-1] * 100
 
 
-def main(n):
-    if len(mem)-1 > n:
-        return mem[n]
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
-    total = main(n - 1) + main(n - 2)
-    mem.append(total)
-    return total
+def fibonacci(i):
+    if memo[i] != -1:
+        return memo[i]
+    if i <= 1:
+        return i
+    memo[i] = fibonacci(i - 1) + fibonacci(i - 2)
+    return memo[i]
 
-
-def print_fs(n):
-    array = [0, 1]
-    while len(array) < n:
-        array.append(array[-1]+array[-2])
-    print(*array)
-
-
-"""0 1 1 2 3 5 8 13"""
 
 if __name__ == "__main__":
-    arr = list(map(int, input().split()))
-    for i in arr:
-        main(i)
-    print(mem)
+    index = int(input())
+    re = fibonacci(index)
+    print(re)
