@@ -1,23 +1,33 @@
-import heapq as hq
+from queue import PriorityQueue as pq
 
 
-def main(a, n, z):
-    attack = 0
-    hq._heapify_max(a)
+def main(arr, n, z):
+    att = int()
+    max_heap = pq()
+    for ele in arr:
+        max_heap.put(-ele)
 
-    while z > 0 and a[0] != 0:
-        attack += 1
-        temp = hq.heappop(a)
-        z -= temp
-        hq.heappush(a, temp // 2)
-        hq._heapify_max(a)
+    while z > 0 and not max_heap.empty():
 
-    return "Evacuate" if z > 0 else attack
+        att += 1
+        sold = -max_heap.get()
+
+        z -= sold
+        sold //= 2
+
+        if sold:
+            max_heap.put(-sold)
+
+    if z > 0:
+        return -1
+
+    return att
 
 
-if __name__ == '__main__':
-    t = input()
-    n, z = list(map(int, input().split()))
-    a = list(map(int, input().split()))
-    re = main(a, n, z)
-    print(re)
+if __name__ == "__main__":
+    t = int(input())
+    for _ in range(t):
+        n, z = list(map(int, input().split()))
+        arr = list(map(int, input().split()))
+        re = main(arr, n, z)
+        print("Evacuate" if re == -1 else re)
