@@ -1,30 +1,29 @@
-from queue import PriorityQueue
+from queue import PriorityQueue as pq
 
 
 def main(arr, n):
-
-    q = PriorityQueue()
+    count = 0
+    max_heap = pq()
 
     for ele in arr:
-        q.put(-ele)
-    count = 0
+        max_heap.put(-ele)
 
-    while q.qsize() >= 2:
+    while max_heap.qsize() >= 2:
 
-        element1 = -1*q.get()
-        element2 = -1*q.get()
+        first = -max_heap.get()
+        second = -max_heap.get()
 
-        element1 -= 1
-        element2 -= 1
+        first -= 1
+        second -= 1
 
         count += 2
 
-        if element1 > 0:
-            q.put(-element1)
-        if element2 > 0:
-            q.put(-element2)
+        if first not in [0]:
+            max_heap.put(-first)
+        if second not in [0]:
+            max_heap.put(-second)
 
-    return count if q.qsize() == 0 else -1
+    return count if max_heap.empty() else -1
 
 
 if __name__ == "__main__":
