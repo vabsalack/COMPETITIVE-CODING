@@ -1,33 +1,32 @@
-# cook your dish here
-import heapq as q
+from queue import PriorityQueue as pq
 
 
-def decide(a, b, x, y, z):
-    t1 = (z - a) / x
-    t2 = (z - b) / y
-    return t1 >= t2
+def main(arr, n, a, b, x, y, z):
+    con = int()
+    max_heap = pq()
+    for ele in arr:
+        max_heap.put(-ele)
 
+    day_a, day_b = (z - a) // x, (z - b) // y
 
-def main(ar1, c):
-    ans = int()
-    q._heapify_max(c)
-    a, b, x, y, z = ar1[1:]
-    while c[0] != 0 and decide(a, b, x, y, z):
-        ans += 1
-        temp = q._heappop_max(c)
-        a += temp
-        q.heappush(c, temp // 2)
-        q._heapify_max(c)
+    while day_a >= day_b and not max_heap.empty():
 
-    if decide(a, b, x, y, z):
-        print("RIP")
-    else:
-        print(ans)
+        con += 1
+        contri = -max_heap.get()
+        a += contri
+        day_a = (z - a) // x
+        contri //= 2
+
+        if contri:
+            max_heap.put(-contri)
+
+    return "RIP" if day_a > day_b else con
 
 
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
-        ar1 = list(map(int, input().split()))
-        c = list(map(int, input().split()))
-        main(ar1, c)
+        n, a, b, x, y, z = list(map(int, input().split()))
+        arr = list(map(int, input().split()))
+        re = main(arr, n, a, b, x, y, z)
+        print(re)
