@@ -1,3 +1,22 @@
+def printlevelorder(root):
+    """ print level order traversal of tree using while loop and queue data structure without recursion"""
+    queue = [root]
+
+    while len(queue) > 0:
+
+        node = queue.pop(0)
+
+        if node is None:
+            return
+
+        print(node.info, end=" ")
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+
+##########################################################################################################
+
 class Node:
     def __init__(self, info):
         self.info = info
