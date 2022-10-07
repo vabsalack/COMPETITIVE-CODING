@@ -14,7 +14,8 @@ class BinarySearchTree:
         self.root = None
 
     def create(self, val):
-        if self.root == None:
+
+        if self.root is None:
             self.root = Node(val)
         else:
             current = self.root
@@ -46,26 +47,25 @@ self.info (the value of the node)
 
 def topView(root):
     # Write your code here
-    heights = {}
+    heights = dict()
 
-    def recur(root, h, l):
+    def recursion(root, h, l):
 
-        if root:
+        if root is not None:
+            temp = (root, l)
 
             if h not in heights:
-                heights[h] = [root, l]
-
+                heights[h] = temp
             elif heights[h][1] > l:
-                heights[h] = [root, l]
+                heights[h] = temp
 
-            recur(root.left, h - 1, l + 1)
-            recur(root.right, h + 1, l + 1)
+            recursion(root.left, h - 1, l + 1)
+            recursion(root.right, h + 1, l + 1)
 
-    recur(root, 0, 0)
+    recursion(root, 0, 0)
 
-    temp = sorted(heights)
+    for key in sorted(heights):
+        print(heights[key][0].info, end=" ")
 
-    for i in temp:
-        print(heights[i][0].info, end=" ")
 
 
