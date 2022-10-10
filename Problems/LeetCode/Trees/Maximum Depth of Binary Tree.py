@@ -5,12 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    """https://leetcode.com/explore/interview/card/top-interview-questions-easy/94/trees/555/"""
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root) -> int:
+        """ compare the depth of sub left and right tree and return result + 1
+            break to sub problems to find depth of left and right subtree."""
+
+        # base case
         if root is None:
             return 0
 
-        left_depth = self.maxDepth(root.left)
-        right_depth = self.maxDepth(root.right)
+        # main logic
+        ld = self.maxDepth(root.left)
+        rd = self.maxDepth(root.right)
 
-        return left_depth + 1 if left_depth > right_depth else right_depth + 1
+        return ld + 1 if ld > rd else rd + 1
+
+
+
