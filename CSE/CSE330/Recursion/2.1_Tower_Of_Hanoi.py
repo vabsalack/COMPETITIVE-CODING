@@ -1,5 +1,6 @@
 def toh(n, src, hlp, des):
     global move
+
     if n == 0:
         return
 
