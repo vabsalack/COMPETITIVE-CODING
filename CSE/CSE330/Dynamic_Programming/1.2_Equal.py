@@ -15,7 +15,13 @@ import sys
 #
 
 def equal(arr):
-    # Write your code here
+    """ finding minimum no of operations to make all values no of choco equal.
+        one way - add values to all elements except one = operation count +1
+        second way - sub values from each element = operation count +1
+        instead of adding values to elements, subtract from them to equal the stack
+        try subtracting all to min value of array, to min - 4,
+        min - 5, hits the same again.
+        """
     ways = [0]*5
     mini = min(arr)
 
