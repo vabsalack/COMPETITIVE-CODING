@@ -22,15 +22,16 @@ def equal(arr):
         try subtracting all to min value of array, to min - 4,
         min - 5, hits the same again.
         """
-    ways = [0]*5
+    ways = []
     mini = min(arr)
-
     for i in range(5):
-        for j in range(len(arr)):
-            temp = arr[i] - mini
-            steps = (temp // 5) + ((temp % 5) // 2) + ((temp % 5) % 2)
-            ways[i] += steps
+        operations = 0
 
+        for j in range(len(arr)):
+            remaining = arr[j] - mini
+            operations += (remaining // 5) + ((remaining % 5) // 2) + ((remaining % 5) % 2)
+
+        ways.append(operations)
         mini -= 1
 
     return min(ways)
