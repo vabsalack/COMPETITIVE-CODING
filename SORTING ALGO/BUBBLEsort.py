@@ -1,24 +1,26 @@
+
+
 def bubble_sort(arr):
     """
-     Time Complexities:
-        Worst Case Complexity: O(n2)
-        Best Case Complexity: O(n)
+         Time Complexities:
+            Worst Case Complexity: O(n2)
+            Best Case Complexity: O(n)
 
-    Space Complexity:
-        optimized bubble sort algorithm: O(2)
-    """
+        Space Complexity:
+            optimized bubble sort algorithm: O(2)
+        """
+
     length = len(arr)
-    for j in range(length):
+    for i in range(length - 1, 0, -1):
         swapped = True
 
-        for i in range(0, length - j - 1):
-            if arr[i] > arr[i + 1]:
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+        for j in range(0, i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 swapped = False
 
         if swapped:
             break
-
     return
 
 
