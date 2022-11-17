@@ -1,16 +1,30 @@
 def counting_sort(arr):
     size = len(arr)
-    output = [0] * (size)
-    maxi = arr[0]
-    for i in range(1, size):
-        maxi = max(maxi, arr[i])
 
-    count = [0] * (maxi + 1)
+    output = [0] * size
 
-    for i in range(size):
+    count = [0] * 100
+
+    for i in range(0, size):
         count[arr[i]] += 1
 
-    for i in range(1, maxi + 1):
+    for i in range(1, 100):
         count[i] += count[i - 1]
+
+    i = size - 1
+    while i >= 0:
+        output[count[arr[i]] - 1] = arr[i]
+        count[arr[i]] -= 1
+        i -= 1
+
+    for i in range(0 ,size):
+        arr[i] = output[i]
+
+
+if __name__ == "__main__":
+    ar = [4, 2, 2, 8, 3, 3, 1]
+    counting_sort(ar)
+    print(ar)
+
 
 
