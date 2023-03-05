@@ -1,5 +1,5 @@
 """ https://practice.geeksforgeeks.org/problems/reverse-an-array/0 """
-"""commit check""
+"""commit check"""
 
 def main(A, N):
     limit = N // 2
